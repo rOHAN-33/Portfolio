@@ -12,7 +12,7 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="mt-10">
+    <div className="pt-6">
       {/* Desktop Navigation */}
       
       <div className="bg-slate-100 h-[60px] w-full max-w-[450px] mx-auto border border-black rounded-full hidden md:block">
