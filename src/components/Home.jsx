@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { ThemeProvider } from '../ui/useTheme'
 // import ThemeChanger from '../ui/useTheme'
 import ThemeToggle from '../ui/ThemeToggle'
+import Slider from './Slider'
 const Home = () => {
  
   return (
@@ -14,6 +15,7 @@ const Home = () => {
 <div >
   <Navbar></Navbar>
   <ImageGrid></ImageGrid>
+    <Slider></Slider>
   {/* <ThemeToggle></ThemeToggle> */}
 </div>
 

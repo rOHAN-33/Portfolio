@@ -1,0 +1,14 @@
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.slider-track {
+  animation: scrollLeft 60s infinite linear;
+}
+
+
