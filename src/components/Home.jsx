@@ -9,6 +9,7 @@ import { ThemeProvider } from '../ui/useTheme'
 import ThemeToggle from '../ui/ThemeToggle'
 import Slider from './Slider'
 import Explain from './Explain'
+import Skills from './Skills'
 const Home = () => {
  
   return (
@@ -18,6 +19,7 @@ const Home = () => {
   <ImageGrid></ImageGrid>
     <Slider></Slider>
     <Explain></Explain>
+    <Skills></Skills>
   {/* <ThemeToggle></ThemeToggle> */}
 </div>
 
