@@ -5,7 +5,7 @@ import Loader from './components/Loader'
 // import ThemeToggle from '../ui/ThemeToggle'
 
 const App = () => {
-  const[theme, setTheme] = useState("light")
+  const[theme, setTheme] = useState("dark")
   const [isLoading, setIsLoading] = useState(true);
    const darkTheme  = ()=>{
      setTheme("dark")

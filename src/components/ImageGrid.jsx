@@ -1,7 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import RotatingText from '../../reactbits/RotatingText/RotatingText'
 // import { div } from 'three/tsl'
 import '../components/ImageGrid.css'
+import "./ImageGrid.css"
 import FlipImage from './FlipImage'
 import ThemeToggle from '../ui/ThemeToggle'
 const ImageGrid = () => {
@@ -57,7 +59,22 @@ const ImageGrid = () => {
         
     <div className="row-span-3 col-start-4 row-start-2 mt-24">
         <h1 className='text-[100px] ml-[-10px] font-bold ' style={{fontFamily: 'Antonio, sans-serif'}}>DEVELOPER</h1>
-         <h1 className='text-5xl mb-[-30px] font-antonia' style={{fontFamily: 'Antonio, sans-serif'}}>Code. Design. Vibes.</h1>
+         {/* <h1 className='text-5xl mb-[-30px] font-antonia' style={{fontFamily: 'Antonio, sans-serif'}}>Code. Design. Vibes.</h1> */}
+         <RotatingText
+         style={{fontFamily: 'Antonio, sans-serif'}}
+  texts={['Code', 'Design', 'Vibe']}
+  mainClassName="px-2 sm:px-2 md:px-3 bg-cyan-300 text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-5xl font-mono "
+  staggerFrom={"last"}
+  initial={{ y: "100%" }}
+  animate={{ y: 0 }}
+  exit={{ y: "-120%" }}
+  staggerDuration={0.025}
+  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+  rotationInterval={2000}
+  id="rotating"
+/>
+
     </div>
 </div> 
 <div className=" 

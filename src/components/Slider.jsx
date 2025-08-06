@@ -94,7 +94,7 @@ const Slider = () => {
     }, [])
 
     return (
-        <div className='flex items-center mt-[-100px]  flex-col min-h-screen'>
+        <div className='flex items-center mt-[-100px]  flex-col '>
             <style>{customStyle}</style>
             <div className='slider-container overflow-hidden w-full max-w-[1200px] mx-auto rounded-xl   ' id='logo-blur-x'>
                 <div className='slider-track flex w-fit' id='sliderTrack'>

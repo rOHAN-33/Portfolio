@@ -1,0 +1,38 @@
+.pill {
+  color: #b5b5b5a4; /* Adjust this color to change intensity/style */
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: inline-block;
+  animation: shine 5s linear infinite;
+  border: 2px solid rgb(255, 255, 255, 0.3) ;
+  border-radius: 150px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 13px;
+  padding-right: 13px;
+
+}
+
+
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+
+.intro{
+    line-height: 2;
+    margin-top: 100px;
+    font-size: 28px;
+    /* font-weight: bold; */
+}
