@@ -9,7 +9,8 @@ export default {
     extend: {
       fontFamily: {
         'antonia': ['Antonia', 'sans-serif'],
-      }
+      },
+      
     },
   },
   plugins: [],
