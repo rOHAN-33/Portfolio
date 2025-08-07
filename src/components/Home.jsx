@@ -10,16 +10,19 @@ import ThemeToggle from '../ui/ThemeToggle'
 import Slider from './Slider'
 import Explain from './Explain'
 import Skills from './Skills'
+// import Testimonials from './Testimonials'
+import TestimonialsSection from './TestimonialsSection'
 const Home = () => {
  
   return (
    
-<div >
+<div className='min-h-screen' >
   <Navbar></Navbar>
   <ImageGrid></ImageGrid>
     <Slider></Slider>
     <Explain></Explain>
     <Skills></Skills>
+    <TestimonialsSection></TestimonialsSection>
   {/* <ThemeToggle></ThemeToggle> */}
 </div>
 
