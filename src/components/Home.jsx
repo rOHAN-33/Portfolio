@@ -15,6 +15,7 @@ import TestimonialsSection from './TestimonialsSection'
 import Contact from './Contact'
 import Footer from './Footer'
 import Projects from './Projects'
+// import Loader from '../ui/Loader'
 const Home = () => {
  
   return (
