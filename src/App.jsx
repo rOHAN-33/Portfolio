@@ -72,6 +72,7 @@ const App = () => {
       <ThemeProvider value={{ theme, darkTheme, lightTheme }}>
 
         <div className={`min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300`}>
+
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/about' element={<About />} />
