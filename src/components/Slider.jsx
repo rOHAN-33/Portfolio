@@ -102,9 +102,9 @@ const Slider = () => {
                     {itemsSection.map((items, index) => (
                         <div
                             key={`original-${index}`}
-                            className='slider-item flex-shrink-0 w-[120px] h-[120px] flex items-center justify-center mr-[100px]'
+                            className='slider-item flex-shrink-0 w-[150px] h-[150px] flex items-center justify-center mr-[50px]'
                         >
-                            <div className='w-full h-full bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg '>
+                            <div className='w-[100px] h-[100px] bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg '>
                                  <img 
                                 src={items.imageUrl} 
                                 alt={`Technology ${index + 1}`}
@@ -119,9 +119,9 @@ const Slider = () => {
                     {itemsSection.map((items, index) => (
                         <div
                             key={`original-${index}`}
-                            className='slider-item flex-shrink-0 w-[120px] h-[120px] flex items-center justify-center mr-[100px]'
+                            className='slider-item flex-shrink-0 w-[150px] h-[150px] flex items-center justify-center mr-[50px]'
                         >
-                            <div className='w-full h-full bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg '>
+                            <div className='w-[100px] h-[100px] bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg '>
                                  <img 
                                 src={items.imageUrl} 
                                 alt={`Technology ${index + 1}`}

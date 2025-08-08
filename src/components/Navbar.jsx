@@ -453,7 +453,7 @@ export default function Navbar() {
   );
 
   return (
-    <div className="sticky top-6 z-40">
+    <div className="sticky top-6 z-40 mt-[-60px] ">
       {/* Desktop Navbar */}
       <div className={`
     bg-white h-[60px] border border-black rounded-full hidden md:flex 
@@ -463,7 +463,7 @@ export default function Navbar() {
   `}>
     {/* Logo */}
     <img
-      src="https://placehold.co/40x40/FF69B4/FFFFFF?text=❤️"
+      src="./heart.png"
       alt="Logo"
       className="h-10 w-10 rounded-full object-cover transform hover:scale-150 transition duration-300 flex-shrink-0"
     />
@@ -486,7 +486,7 @@ export default function Navbar() {
 ))}
 
         <button className="bg-gray-700 px-4 py-2 rounded-full text-white hover:bg-gray-800 transition-colors">
-          Contact
+          Resume
         </button>
       </div>
 

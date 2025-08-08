@@ -3,7 +3,7 @@ import { X, Instagram, Github } from 'lucide-react';
 import TheseColors from '../ui/Colors';
 export default function Footer() {
   return (
-    <footer className="w-full bg-green-600 py-8 text-foreground" style={{backgroundColor:TheseColors.green}}>
+    <footer className="mt-[-140px] w-full bg-green-600 py-8 text-foreground" style={{backgroundColor:TheseColors.green}}>
       <div className="container mx-auto px-4">
         <div className="bg-lime-green p-8 rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-dark-background">

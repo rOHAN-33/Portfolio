@@ -28,7 +28,7 @@ const Home = () => {
     <Skills></Skills>
     <TestimonialsSection></TestimonialsSection>
      <Contact></Contact>
-    <Footer></Footer>
+    {/* <Footer></Footer> */}
    
   {/* <ThemeToggle></ThemeToggle> */}
 </div>

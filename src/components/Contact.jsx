@@ -76,7 +76,7 @@ const HoverVideoBlock = ({
   };
 
   return (
-    <div className="p-8 ml-[40px] mb-[70px] mt-[-40px] h-[300px] w-[1050px] flex justify-center items-center  bg-black">
+    <div className="p-8 ml-[40px] mb-[190px] mt-[-40px] h-[400px] w-[1050px] flex justify-center items-center  bg-black">
       <div
         className="relative  cursor-pointer transition-all duration-300 ease-in-out"
         style={{
