@@ -187,8 +187,9 @@
 
 
 import React from 'react';
-
+import { useState } from 'react';
 const Explain = () => {
+  const [isHovered, setIsHovered] = useState(false);
   const skills = [
     'JavaScript',
     'React & Next.js',
@@ -282,7 +283,81 @@ const Explain = () => {
         <div className="w-12 h-12 bg-white mb-10 md:mb-16 clip-polygon-logo"></div>
         
         {/* About Title - responsive font size and margin */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-10 md:mb-16 tracking-tight leading-none font-antonio">about</h1>
+        <div
+        className="relative cursor-pointer transition-all duration-500 ease-in-out"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Main About Text */}
+        <h1 
+          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold 
+                     mb-10 md:mb-16 tracking-tight leading-none text-white
+                     transition-all duration-500 ease-in-out
+                     ${isHovered ? 'transform scale-105' : ''}`}
+          style={{fontFamily: 'Antonio, sans-serif'}}
+        >
+          {/* Split text for animation */}
+          <span className={`inline-block transition-all duration-300 ${isHovered ? 'mr-4' : ''}`}>
+            ab
+          </span>
+          
+          {/* Coding symbols that appear on hover */}
+          <span className={`inline-block transition-all duration-500 overflow-hidden ${
+            isHovered ? 'max-w-20 opacity-100 mx-2' : 'max-w-0 opacity-0'
+          }`}>
+            <span className="text-green-400">&lt;</span>
+            <span className="text-purple-400">/</span>
+            <span className="text-blue-400">&gt;</span>
+          </span>
+          
+          <span className={`inline-block transition-all duration-300 ${isHovered ? 'ml-4' : ''}`}>
+            out
+          </span>
+        </h1>
+
+        {/* Animated colorful border */}
+        <div className="relative">
+          <div
+            className={`h-2 bg-gradient-to-r from-green-400 via-blue-500 via-purple-500 to-pink-500 
+                       transition-all duration-700 ease-out
+                       ${isHovered ? 'w-full opacity-100' : 'w-0 opacity-0'}`}
+            style={{
+              background: 'linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b)',
+              transformOrigin: 'left'
+            }}
+          />
+          
+          {/* Glowing effect */}
+          <div
+            className={`absolute top-0 h-2 bg-gradient-to-r from-green-400 via-blue-500 via-purple-500 to-pink-500 
+                       blur-sm transition-all duration-700 ease-out
+                       ${isHovered ? 'w-full opacity-60' : 'w-0 opacity-0'}`}
+            style={{
+              background: 'linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b)',
+              transformOrigin: 'left'
+            }}
+          />
+        </div>
+
+        {/* Additional coding symbols that float around */}
+        <div className={`absolute -top-8 -right-8 transition-all duration-500 ${
+          isHovered ? 'opacity-100 transform rotate-12' : 'opacity-0 transform rotate-0'
+        }`}>
+          <span className="text-2xl text-yellow-400 font-mono">{ }</span>
+        </div>
+        
+        <div className={`absolute -bottom-4 -left-8 transition-all duration-700 ${
+          isHovered ? 'opacity-100 transform -rotate-12' : 'opacity-0 transform rotate-0'
+        }`}>
+          <span className="text-2xl text-cyan-400 font-mono">[ ]</span>
+        </div>
+        
+        <div className={`absolute top-1/2 -right-12 transition-all duration-600 ${
+          isHovered ? 'opacity-100 transform translate-y-2' : 'opacity-0 transform -translate-y-2'
+        }`}>
+          <span className="text-xl text-orange-400 font-mono">=&gt;</span>
+        </div>
+      </div>
         
         {/* Content Section - responsive max-w and increased paragraph bottom margin */}
         <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mb-10">

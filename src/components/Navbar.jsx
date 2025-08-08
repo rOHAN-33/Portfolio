@@ -570,9 +570,10 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", to: "/" }, 
-    { name: "About", to: "/about" },
+    
     // Use real route when ready
-    { name: "Projects", to: "#" }
+    { name: "about", to: "#" },
+    { name: "Projects", to: "/about" },
   ];
 
   useEffect(() => {

@@ -175,10 +175,10 @@ export default function TestimonialsSection() {
     <section className="w-full  py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <div className="mb-12 ">
-          <h2 className="text-4xl ml-32 font-bold tracking-tighter text-white sm:text-5xl md:text-6xl" style={{fontFamily: 'Antonio, sans-serif'}}>
+          <h2 className="text-4xl ml-[60px]  font-bold tracking-tighter text-white sm:text-5xl md:text-6xl" style={{fontFamily: 'Antonio, sans-serif'}}>
             What Our Clients Say
           </h2>
-          <p className="mx-auto mt-4 max-w-[700px] ml-32 text-gray-400 md:text-xl">
+          <p className="mx-auto mt-4 max-w-[700px] ml-[60px] text-gray-400 md:text-xl">
             Hear from the businesses and individuals who have experienced the
             impact of our work.
           </p>
