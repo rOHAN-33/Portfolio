@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { gsap } from 'gsap'
 import "./Slider.css"
 
 const customStyle = `
@@ -13,10 +14,15 @@ const customStyle = `
         
     .slider-track {
         animation: scrollLeft 60s infinite linear;
+        animation-play-state: paused; /* Start paused until reveal completes */
     }
         
     .slider-track:hover {
         animation-play-state: paused;
+    }
+    
+    .slider-track.playing {
+        animation-play-state: running;
     }
                
     @media (max-width: 768px) {
@@ -41,38 +47,34 @@ const customStyle = `
             animation-duration: 20s;
         }
     }
-        .logo-blur-x {
-  position: relative;
-  display: inline-block;
-}
 
-.logo-blur-x img {
-  display: block;
-}
+    .reveal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        pointer-events: none;
+    }
 
-.logo-blur-x::before,
-.logo-blur-x::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 40px; /* Adjust blur width */
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-}
+    .reveal-left, .reveal-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: #000000; /* Dark overlay */
+        z-index: 10;
+    }
 
-.logo-blur-x::before {
-  left: 0;
-  background: linear-gradient(to right, rgba(30,30,30,0.6) 70%, transparent 100%);
-  filter: blur(10px); /* Adjust blur strength */
-}
+    .reveal-left {
+        left: 0;
+        width: 50%;
+    }
 
-.logo-blur-x::after {
-  right: 0;
-  background: linear-gradient(to left, rgba(30,30,30,0.6) 70%, transparent 100%);
-  filter: blur(10px);
-}
-
+    .reveal-right {
+        right: 0;
+        width: 50%;
+    }
 `
 
 const Slider = () => {
@@ -86,49 +88,86 @@ const Slider = () => {
         {imageUrl: "./figma.png"}
     ])
 
+    const sliderRef = useRef(null)
+    const leftOverlayRef = useRef(null)
+    const rightOverlayRef = useRef(null)
+    const sliderTrackRef = useRef(null)
+
     useEffect(() => {
-        const sliderTrack = document.getElementById("sliderTrack")
-        if (sliderTrack) {
-            sliderTrack.style.animation = 'scrollLeft 80s linear infinite';
+        const timeline = gsap.timeline()
+
+        // Initial state - overlays cover the entire slider
+        gsap.set([leftOverlayRef.current, rightOverlayRef.current], {
+            width: "50%"
+        })
+
+        // Animation sequence
+        timeline
+            .to([leftOverlayRef.current, rightOverlayRef.current], {
+                width: "0%",
+                duration: 1.2,
+                ease: "power2.inOut",
+                delay: 0.5 // Small delay before starting
+            })
+            .call(() => {
+                // Start the slider animation after reveal completes
+                if (sliderTrackRef.current) {
+                    sliderTrackRef.current.classList.add('playing')
+                }
+            })
+
+        return () => {
+            timeline.kill()
         }
     }, [])
 
     return (
-        <div className='flex items-center mt-[-100px]  flex-col '>
+        <div className='flex items-center mt-[-100px] flex-col'>
             <style>{customStyle}</style>
-            <div className='slider-container overflow-hidden w-full max-w-[1200px] mx-auto rounded-xl   ' id='logo-blur-x'>
-                <div className='slider-track flex w-fit' id='sliderTrack'>
+            <div 
+                ref={sliderRef}
+                className='slider-container overflow-hidden w-full max-w-[1200px] mx-auto rounded-xl relative'
+            >
+                {/* Reveal overlay */}
+                <div className="reveal-overlay">
+                    <div ref={leftOverlayRef} className="reveal-left"></div>
+                    <div ref={rightOverlayRef} className="reveal-right"></div>
+                </div>
+
+                <div 
+                    ref={sliderTrackRef}
+                    className='slider-track flex w-fit' 
+                    id='sliderTrack'
+                >
                     {/* Original items */}
                     {itemsSection.map((items, index) => (
                         <div
                             key={`original-${index}`}
                             className='slider-item flex-shrink-0 w-[150px] h-[150px] flex items-center justify-center mr-[50px]'
                         >
-                            <div className='w-[100px] h-[100px] bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg '>
-                                 <img 
-                                src={items.imageUrl} 
-                                alt={`Technology ${index + 1}`}
-                                className='w-[100px] h-[100px] object-contain'
-                            />
+                            <div className='w-[100px] h-[100px] bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg'>
+                                <img 
+                                    src={items.imageUrl} 
+                                    alt={`Technology ${index + 1}`}
+                                    className='w-[100px] h-[100px] object-contain'
+                                />
                             </div>
-                           
                         </div>
                     ))}
                     
                     {/* Cloned items for seamless loop */}
                     {itemsSection.map((items, index) => (
                         <div
-                            key={`original-${index}`}
+                            key={`clone-${index}`}
                             className='slider-item flex-shrink-0 w-[150px] h-[150px] flex items-center justify-center mr-[50px]'
                         >
-                            <div className='w-[100px] h-[100px] bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg '>
-                                 <img 
-                                src={items.imageUrl} 
-                                alt={`Technology ${index + 1}`}
-                                className='w-16 h-16 object-contain'
-                            />
+                            <div className='w-[100px] h-[100px] bg-gray-800 rounded-3xl flex items-center justify-center p-4 shadow-lg'>
+                                <img 
+                                    src={items.imageUrl} 
+                                    alt={`Technology ${index + 1}`}
+                                    className='w-16 h-16 object-contain'
+                                />
                             </div>
-                           
                         </div>
                     ))}
                 </div>
