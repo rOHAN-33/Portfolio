@@ -143,7 +143,7 @@ const Skills = () => {
   ];
 
   // Coding icons that appear between letters
-  const codingIcons = ['<>', '{...}', '[ ]', '( )', '/>', '&&', '||', '=>'];
+  // const codingIcons = ['<>', '{...}', '[ ]', '( )', '/>', '&&', '||', '=>'];
 
   // Track mouse movement
   useEffect(() => {
@@ -195,21 +195,21 @@ const Skills = () => {
                 {letter}
               </span>
               
-              {/* Coding icon between letters (except after the last letter) */}
+              {/* Coding icon between letters (except after the last letter)
               {index < letters.length - 1 && (
-                <span 
-                  className={`inline-block text-2xl font-mono transition-all duration-500 ease-out mx-2 ${
-                    isHeaderHovered 
-                      ? 'opacity-100 scale-100 text-orange-400 animate-pulse' 
-                      : 'opacity-0 scale-0 w-0'
-                  }`}
-                  style={{
-                    transitionDelay: `${(index + 1) * 100}ms`
-                  }}
-                >
-                  {codingIcons[index % codingIcons.length]}
-                </span>
-              )}
+                // <span 
+                //   className={`inline-block text-2xl font-mono transition-all duration-500 ease-out mx-2 ${
+                //     isHeaderHovered 
+                //       ? 'opacity-100 scale-100 text-orange-400 animate-pulse' 
+                //       : 'opacity-0 scale-0 w-0'
+                //   }`}
+                //   style={{
+                //     transitionDelay: `${(index + 1) * 100}ms`
+                //   }}
+                // >
+                //   {codingIcons[index % codingIcons.length]}
+                // </span>
+              )} */}
             </React.Fragment>
           ))}
         </div>

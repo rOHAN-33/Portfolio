@@ -3,7 +3,7 @@ import  { WithFrameShine } from './withFrameShine'
 import GridDistortion from "../../reactbits/GridDistortion/GridDistortion"
 import Navbar from './Navbar'
 import ImageGrid from './ImageGrid'
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { ThemeProvider } from '../ui/useTheme'
 // import ThemeChanger from '../ui/useTheme'
 import ThemeToggle from '../ui/ThemeToggle'
@@ -15,6 +15,8 @@ import TestimonialsSection from './TestimonialsSection'
 import Contact from './Contact'
 import Footer from './Footer'
 import Projects from './Projects'
+import LogoLoop from '../../reactbits/LogoLoop/LogoLoop'
+import ScrollStack from './ScrollStack'
 // import Loader from '../ui/Loader'
 const Home = () => {
  
@@ -23,9 +25,11 @@ const Home = () => {
 <div className='min-h-screen' >
   {/* <Navbar></Navbar> */}
   <ImageGrid></ImageGrid>
+  {/* <LogoLoop></LogoLoop> */}
     <Slider></Slider>
     {/* <Projects></Projects> */}
     <Explain></Explain>
+    <ScrollStack></ScrollStack>
     <Skills></Skills>
     <TestimonialsSection></TestimonialsSection>
      <Contact></Contact>
