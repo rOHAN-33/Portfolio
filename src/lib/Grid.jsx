@@ -307,7 +307,7 @@ export default function Page() {
       <CustomCursor cursorText={cursorText} />
 
       <div className="bg-dots">
-        <section className="mx-auto max-w-6xl px-4 py-8 md:py-12">
+        <section className="mx-auto max-w-6xl px-4  md:py-12">
           <header className="mb-6 md:mb-8 text-center">
             <h1 className="text-pretty text-2xl font-semibold md:text-7xl mb-4" style={{fontFamily: 'Antonio, sans-serif'}}>Tech stack</h1>
             <p className="text-xl text-slate-300">Skilled in building modern web applications with a strong focus on performance and design.</p>

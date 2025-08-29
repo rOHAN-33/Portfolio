@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useTransform, motion, useScroll } from 'framer-motion';
 // import styles from './styles.module.scss';
 import styles from "./styles.module.scss";
+import { TextReveal } from '../components/magicui/text-reveal';
 
 const Card = ({ i, title, description, src, url, color, progress, range, targetScale }) => {
   const container = useRef(null);
@@ -15,7 +16,7 @@ const Card = ({ i, title, description, src, url, color, progress, range, targetS
 
   return (
     <div ref={container} className={styles.cardContainer}>
-      
+      {/* <TextReveal>My Work</TextReveal> */}
       <motion.div
         style={{ backgroundColor: color, scale, top: `calc(-5vh + ${i * 25}px)` }}
         className={styles.card}
