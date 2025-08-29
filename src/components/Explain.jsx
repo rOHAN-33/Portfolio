@@ -1,66 +1,78 @@
 
 
 
-// import React from 'react';
-// import { useState } from 'react';
+
+
+
+
+
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+
 // const Explain = () => {
 //   const [isHovered, setIsHovered] = useState(false);
-//   const skills = [
-//     'JavaScript',
-//     'React & Next.js',
-//     'Express.js',
-//     'MongoDB',
-//     'DevOps',
-//     'System Design',
-//     'Game Development',
-//     'UI/UX Design'
-//   ];
+//   const headerRef = useRef(null);
+//   const contentRef = useRef(null);
+//   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+//   const [isContentVisible, setIsContentVisible] = useState(false);
 
-//   // Using Tailwind's responsive classes directly in JSX is preferred.
-//   // We'll keep some inline styles for properties not easily covered by Tailwind,
-//   // or for specific gradients/complex styles.
+//   useEffect(() => {
+//     const observerOptions = {
+//       root: null,
+//       rootMargin: '0px',
+//       threshold: 0.1, // Trigger when 10% of the element is visible
+//     };
+
+//     const headerObserver = new IntersectionObserver(([entry]) => {
+//       if (entry.isIntersecting) {
+//         setIsHeaderVisible(true);
+//       }
+//     }, observerOptions);
+
+//     const contentObserver = new IntersectionObserver(([entry]) => {
+//       if (entry.isIntersecting) {
+//         setIsContentVisible(true);
+//       }
+//     }, observerOptions);
+
+//     if (headerRef.current) {
+//       headerObserver.observe(headerRef.current);
+//     }
+//     if (contentRef.current) {
+//       contentObserver.observe(contentRef.current);
+//     }
+
+//     // Cleanup observers on component unmount
+//     return () => {
+//       if (headerRef.current) {
+//         headerObserver.unobserve(headerRef.current);
+//       }
+//       if (contentRef.current) {
+//         contentObserver.unobserve(contentRef.current);
+//       }
+//     };
+//   }, []);
+
 //   const styles = {
 //     highlight: {
-//       // Adjusted gradient colors for better contrast and vibrancy
 //       background: 'linear-gradient(135deg, #a78bfa 0%, #d48aed 50%, #fbcfe8 100%)',
 //       WebkitBackgroundClip: 'text',
 //       WebkitTextFillColor: 'transparent',
 //       backgroundClip: 'text',
 //       fontWeight: '600',
 //       cursor: 'pointer',
-//       transition: 'all 0.3s ease'
+//       transition: 'all 0.3s ease',
 //     },
 //     emoji: {
 //       fontSize: '1.6rem',
 //       marginRight: '8px',
-//       display: 'inline-block'
-//     },
-//     skillTag: {
 //       display: 'inline-block',
-//       background: 'rgba(255, 255, 255, 0.05)',
-//       border: '1px solid rgba(255, 255, 255, 0.1)',
-//       padding: '8px 16px',
-//       borderRadius: '25px',
-//       margin: '4px 8px 4px 0',
-//       fontSize: '0.9rem',
-//       fontWeight: '500',
-//       color: '#c0c0c0',
-//       cursor: 'pointer',
-//       transition: 'all 0.3s ease',
-//       backdropFilter: 'blur(10px)'
 //     },
-//     gradientText: {
-//       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-//       WebkitBackgroundClip: 'text',
-//       WebkitTextFillColor: 'transparent',
-//       backgroundClip: 'text'
-//     }
 //   };
 
 //   return (
 //     <>
-//       {/* Tailwind CSS CDN for convenience */}
-//       <script src="https://cdn.tailwindcss.com"></script>
 //       <style>
 //         {`
 //           .emoji-bounce {
@@ -81,103 +93,115 @@
 //             transform: translateY(-1px);
 //             filter: brightness(1.2);
 //           }
-//           .skill-tag:hover {
-//             background: rgba(102, 126, 234, 0.2) !important;
-//             border-color: rgba(102, 126, 234, 0.5) !important;
-//             color: white !important;
-//             transform: translateY(-2px);
-//           }
 //           .clip-polygon-logo {
 //             clip-path: polygon(0 0, 50% 0, 50% 50%, 100% 50%, 100% 100%, 50% 100%, 50% 50%, 0 50%);
 //           }
+//           .scroll-float-reveal {
+//             transform: translateY(20px);
+//             opacity: 0;
+//             transition: transform 1s ease-out, opacity 1s ease-out;
+//           }
+//           .scroll-float-reveal.is-visible {
+//             transform: translateY(0);
+//             opacity: 1;
+//           }
+//           .scroll-reveal {
+//             opacity: 0;
+//             transition: opacity 1s ease-in;
+//           }
+//           .scroll-reveal.is-visible {
+//             opacity: 1;
+//           }
 //         `}
 //       </style>
-//       {/* Using Tailwind classes for responsiveness */}
 //       <div className="mt-10 font-inter text-white leading-relaxed px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 max-w-6xl mx-auto">
 //         {/* Logo - adjusted margin for responsiveness */}
 //         <div className="w-12 h-12 bg-white mb-10 md:mb-16 clip-polygon-logo"></div>
         
 //         {/* About Title - responsive font size and margin */}
 //         <div
-//         className="relative cursor-pointer transition-all duration-500 ease-in-out"
-//         onMouseEnter={() => setIsHovered(true)}
-//         onMouseLeave={() => setIsHovered(false)}
-//       >
-//         {/* Main About Text */}
-//         <h1 
-//           className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold 
-//                      mb-10 md:mb-16 tracking-tight leading-none text-white
-//                      transition-all duration-500 ease-in-out
-//                      ${isHovered ? 'transform scale-105' : ''}`}
-//           style={{fontFamily: 'Antonio, sans-serif'}}
+//           ref={headerRef}
+//           className={`relative cursor-pointer transition-all duration-500 ease-in-out scroll-float-reveal ${isHeaderVisible ? 'is-visible' : ''}`}
+//           onMouseEnter={() => setIsHovered(true)}
+//           onMouseLeave={() => setIsHovered(false)}
 //         >
-//           {/* Split text for animation */}
-//           <span className={`inline-block transition-all duration-300 ${isHovered ? 'mr-4' : ''}`}>
-//             ab
-//           </span>
-          
-//           {/* Coding symbols that appear on hover */}
-//           <span className={`inline-block transition-all duration-500 overflow-hidden ${
-//             isHovered ? 'max-w-20 opacity-100 mx-2' : 'max-w-0 opacity-0'
+//           {/* Main About Text */}
+//           <h1 
+//             className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold 
+//               mb-10 md:mb-16 tracking-tight leading-none text-white
+//               transition-all duration-500 ease-in-out
+//               ${isHovered ? 'transform scale-105' : ''}`}
+//             style={{fontFamily: 'Antonio, sans-serif'}}
+//           >
+//             {/* Split text for animation */}
+//             <span className={`inline-block transition-all duration-300 ${isHovered ? 'mr-4' : ''}`}>
+//               ab
+//             </span>
+            
+//             {/* Coding symbols that appear on hover */}
+//             <span className={`inline-block transition-all duration-500 overflow-hidden ${
+//               isHovered ? 'max-w-20 opacity-100 mx-2' : 'max-w-0 opacity-0'
+//             }`}>
+//               <span className="text-green-400">&lt;</span>
+//               <span className="text-purple-400">/</span>
+//               <span className="text-blue-400">&gt;</span>
+//             </span>
+            
+//             <span className={`inline-block transition-all duration-300 ${isHovered ? 'ml-4' : ''}`}>
+//               out
+//             </span>
+//           </h1>
+
+//           {/* Animated colorful border */}
+//           <div className="relative">
+//             <div
+//               className={`h-2 bg-gradient-to-r from-green-400 via-blue-500 via-purple-500 to-pink-500 
+//                 transition-all duration-700 ease-out
+//                 ${isHovered ? 'w-full opacity-100' : 'w-0 opacity-0'}`}
+//               style={{
+//                 background: 'linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b)',
+//                 transformOrigin: 'left',
+//               }}
+//             />
+            
+//             {/* Glowing effect */}
+//             <div
+//               className={`absolute top-0 h-2 bg-gradient-to-r from-green-400 via-blue-500 via-purple-500 to-pink-500 
+//                 blur-sm transition-all duration-700 ease-out
+//                 ${isHovered ? 'w-full opacity-60' : 'w-0 opacity-0'}`}
+//               style={{
+//                 background: 'linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b)',
+//                 transformOrigin: 'left',
+//               }}
+//             />
+//           </div>
+
+//           {/* Additional coding symbols that float around */}
+//           <div className={`absolute -top-8 -right-8 transition-all duration-500 ${
+//             isHovered ? 'opacity-100 transform rotate-12' : 'opacity-0 transform rotate-0'
 //           }`}>
-//             <span className="text-green-400">&lt;</span>
-//             <span className="text-purple-400">/</span>
-//             <span className="text-blue-400">&gt;</span>
-//           </span>
+//             <span className="text-2xl text-yellow-400 font-mono">{ }</span>
+//           </div>
           
-//           <span className={`inline-block transition-all duration-300 ${isHovered ? 'ml-4' : ''}`}>
-//             out
-//           </span>
-//         </h1>
-
-//         {/* Animated colorful border */}
-//         <div className="relative">
-//           <div
-//             className={`h-2 bg-gradient-to-r from-green-400 via-blue-500 via-purple-500 to-pink-500 
-//                        transition-all duration-700 ease-out
-//                        ${isHovered ? 'w-full opacity-100' : 'w-0 opacity-0'}`}
-//             style={{
-//               background: 'linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b)',
-//               transformOrigin: 'left'
-//             }}
-//           />
+//           <div className={`absolute -bottom-4 -left-8 transition-all duration-700 ${
+//             isHovered ? 'opacity-100 transform -rotate-12' : 'opacity-0 transform rotate-0'
+//           }`}>
+//             <span className="text-2xl text-cyan-400 font-mono">[ ]</span>
+//           </div>
           
-//           {/* Glowing effect */}
-//           <div
-//             className={`absolute top-0 h-2 bg-gradient-to-r from-green-400 via-blue-500 via-purple-500 to-pink-500 
-//                        blur-sm transition-all duration-700 ease-out
-//                        ${isHovered ? 'w-full opacity-60' : 'w-0 opacity-0'}`}
-//             style={{
-//               background: 'linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b)',
-//               transformOrigin: 'left'
-//             }}
-//           />
+//           <div className={`absolute top-1/2 -right-12 transition-all duration-600 ${
+//             isHovered ? 'opacity-100 transform translate-y-2' : 'opacity-0 transform -translate-y-2'
+//           }`}>
+//             <span className="text-xl text-orange-400 font-mono">=&gt;</span>
+//           </div>
 //         </div>
-
-//         {/* Additional coding symbols that float around */}
-//         <div className={`absolute -top-8 -right-8 transition-all duration-500 ${
-//           isHovered ? 'opacity-100 transform rotate-12' : 'opacity-0 transform rotate-0'
-//         }`}>
-//           <span className="text-2xl text-yellow-400 font-mono">{ }</span>
-//         </div>
-        
-//         <div className={`absolute -bottom-4 -left-8 transition-all duration-700 ${
-//           isHovered ? 'opacity-100 transform -rotate-12' : 'opacity-0 transform rotate-0'
-//         }`}>
-//           <span className="text-2xl text-cyan-400 font-mono">[ ]</span>
-//         </div>
-        
-//         <div className={`absolute top-1/2 -right-12 transition-all duration-600 ${
-//           isHovered ? 'opacity-100 transform translate-y-2' : 'opacity-0 transform -translate-y-2'
-//         }`}>
-//           <span className="text-xl text-orange-400 font-mono">=&gt;</span>
-//         </div>
-//       </div>
         
 //         {/* Content Section - responsive max-w and increased paragraph bottom margin */}
-//         <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mb-10">
+//         <div
+//           ref={contentRef}
+//           className={`max-w-3xl lg:max-w-4xl xl:max-w-5xl mb-10 scroll-reveal ${isContentVisible ? 'is-visible' : ''}`}
+//         >
 //           {/* Paragraphs - responsive font size and line height, now mb-10 */}
-          
 //           <p className="text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10 text-gray-200">
 //             <span style={styles.emoji} className="emoji-bounce">🚀</span> A creative technologist who seamlessly blends{' '}
 //             <span style={styles.highlight} className="highlight">Design Thinking</span> and <span style={styles.highlight} className="highlight">Code Craft</span>{' '}
@@ -201,9 +225,6 @@
 //             collaborating with teams across different industries.
 //           </p>
 //         </div>
-
-//         {/* Skills Container - added for completeness, though not in original screenshot */}
-        
 //       </div>
 //     </>
 //   );
@@ -219,51 +240,98 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect, useRef } from 'react';
 
 const Explain = () => {
   const [isHovered, setIsHovered] = useState(false);
   const headerRef = useRef(null);
   const contentRef = useRef(null);
+  const paragraph1Ref = useRef(null);
+  const paragraph2Ref = useRef(null);
+  const paragraph3Ref = useRef(null);
+  
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
+  const [paragraph1Visible, setParagraph1Visible] = useState(false);
+  const [paragraph2Visible, setParagraph2Visible] = useState(false);
+  const [paragraph3Visible, setParagraph3Visible] = useState(false);
+  
+  const [scrollDirection, setScrollDirection] = useState('down');
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Track scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollDirection(currentScrollY > lastScrollY ? 'down' : 'up');
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.1, // Trigger when 10% of the element is visible
+      rootMargin: scrollDirection === 'down' ? '-10% 0px -10% 0px' : '10% 0px 10% 0px',
+      threshold: scrollDirection === 'down' ? 0.2 : 0.1,
     };
 
-    const headerObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsHeaderVisible(true);
-      }
-    }, observerOptions);
+    const createObserver = (setVisible) => {
+      return new IntersectionObserver(([entry]) => {
+        if (scrollDirection === 'down') {
+          setVisible(entry.isIntersecting);
+        } else {
+          // When scrolling up, show element when it's more visible
+          setVisible(entry.isIntersecting && entry.intersectionRatio > 0.1);
+        }
+      }, observerOptions);
+    };
 
-    const contentObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsContentVisible(true);
-      }
-    }, observerOptions);
+    const headerObserver = createObserver(setIsHeaderVisible);
+    const contentObserver = createObserver(setIsContentVisible);
+    const paragraph1Observer = createObserver(setParagraph1Visible);
+    const paragraph2Observer = createObserver(setParagraph2Visible);
+    const paragraph3Observer = createObserver(setParagraph3Visible);
 
-    if (headerRef.current) {
-      headerObserver.observe(headerRef.current);
-    }
-    if (contentRef.current) {
-      contentObserver.observe(contentRef.current);
-    }
+    if (headerRef.current) headerObserver.observe(headerRef.current);
+    if (contentRef.current) contentObserver.observe(contentRef.current);
+    if (paragraph1Ref.current) paragraph1Observer.observe(paragraph1Ref.current);
+    if (paragraph2Ref.current) paragraph2Observer.observe(paragraph2Ref.current);
+    if (paragraph3Ref.current) paragraph3Observer.observe(paragraph3Ref.current);
 
-    // Cleanup observers on component unmount
     return () => {
-      if (headerRef.current) {
-        headerObserver.unobserve(headerRef.current);
-      }
-      if (contentRef.current) {
-        contentObserver.unobserve(contentRef.current);
-      }
+      headerObserver.disconnect();
+      contentObserver.disconnect();
+      paragraph1Observer.disconnect();
+      paragraph2Observer.disconnect();
+      paragraph3Observer.disconnect();
     };
-  }, []);
+  }, [scrollDirection]);
 
   const styles = {
     highlight: {
@@ -307,21 +375,31 @@ const Explain = () => {
           .clip-polygon-logo {
             clip-path: polygon(0 0, 50% 0, 50% 50%, 100% 50%, 100% 100%, 50% 100%, 50% 50%, 0 50%);
           }
-          .scroll-float-reveal {
-            transform: translateY(20px);
+          .scroll-fade-reveal {
+            transform: translateY(30px);
             opacity: 0;
-            transition: transform 1s ease-out, opacity 1s ease-out;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
-          .scroll-float-reveal.is-visible {
+          .scroll-fade-reveal.is-visible {
             transform: translateY(0);
             opacity: 1;
           }
-          .scroll-reveal {
+          .scroll-fade-reveal.is-hidden {
+            transform: translateY(20px);
             opacity: 0;
-            transition: opacity 1s ease-in;
           }
-          .scroll-reveal.is-visible {
+          .paragraph-reveal {
+            transform: translateY(40px);
+            opacity: 0;
+            transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+          .paragraph-reveal.is-visible {
+            transform: translateY(0);
             opacity: 1;
+          }
+          .paragraph-reveal.fade-out {
+            opacity: 0.3;
+            transform: translateY(-10px);
           }
         `}
       </style>
@@ -329,10 +407,12 @@ const Explain = () => {
         {/* Logo - adjusted margin for responsiveness */}
         <div className="w-12 h-12 bg-white mb-10 md:mb-16 clip-polygon-logo"></div>
         
-        {/* About Title - responsive font size and margin */}
+        {/* About Title - enhanced scroll reveal */}
         <div
           ref={headerRef}
-          className={`relative cursor-pointer transition-all duration-500 ease-in-out scroll-float-reveal ${isHeaderVisible ? 'is-visible' : ''}`}
+          className={`relative cursor-pointer transition-all duration-500 ease-in-out scroll-fade-reveal ${
+            isHeaderVisible ? 'is-visible' : ''
+          }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -407,13 +487,21 @@ const Explain = () => {
           </div>
         </div>
         
-        {/* Content Section - responsive max-w and increased paragraph bottom margin */}
+        {/* Content Section - enhanced scroll reveals with staggered animations */}
         <div
           ref={contentRef}
-          className={`max-w-3xl lg:max-w-4xl xl:max-w-5xl mb-10 scroll-reveal ${isContentVisible ? 'is-visible' : ''}`}
+          className={`max-w-3xl lg:max-w-4xl xl:max-w-5xl mb-10 scroll-fade-reveal ${
+            isContentVisible ? 'is-visible' : ''
+          }`}
         >
-          {/* Paragraphs - responsive font size and line height, now mb-10 */}
-          <p className="text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10 text-gray-200">
+          {/* Paragraph 1 - with individual scroll reveal */}
+          <p
+            ref={paragraph1Ref}
+            className={`text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10 text-gray-200 paragraph-reveal ${
+              paragraph1Visible ? 'is-visible' : ''
+            } ${!paragraph1Visible && scrollDirection === 'up' ? 'fade-out' : ''}`}
+            style={{ transitionDelay: '0.1s' }}
+          >
             <span style={styles.emoji} className="emoji-bounce">🚀</span> A creative technologist who seamlessly blends{' '}
             <span style={styles.highlight} className="highlight">Design Thinking</span> and <span style={styles.highlight} className="highlight">Code Craft</span>{' '}
             to build experiences that are both performant and visually striking. As a dedicated 
@@ -422,20 +510,39 @@ const Explain = () => {
             <span style={styles.highlight} className="highlight">Next.js</span> to create dynamic and responsive front-end applications.
           </p>
           
-          <p className="text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10 text-gray-200">
+          {/* Paragraph 2 - with staggered delay */}
+          <p
+            ref={paragraph2Ref}
+            className={`text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10 text-gray-200 paragraph-reveal ${
+              paragraph2Visible ? 'is-visible' : ''
+            } ${!paragraph2Visible && scrollDirection === 'up' ? 'fade-out' : ''}`}
+            style={{ transitionDelay: '0.2s' }}
+          >
             <span style={styles.emoji} className="emoji-bounce">⚡</span> On the back-end, I use <span style={styles.highlight} className="highlight">Express.js</span>{' '}
             to build robust and scalable APIs. Beyond development, I am actively exploring{' '}
             <span style={styles.highlight} className="highlight">DevOps</span> and <span style={styles.highlight} className="highlight">System Design</span>,{' '}
             continuously seeking to optimize workflows and architect resilient systems.
           </p>
           
-          <p className="text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10 text-gray-200">
+          {/* Paragraph 3 - with final staggered delay */}
+          <p
+            ref={paragraph3Ref}
+            className={`text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10 text-gray-200 paragraph-reveal ${
+              paragraph3Visible ? 'is-visible' : ''
+            } ${!paragraph3Visible && scrollDirection === 'up' ? 'fade-out' : ''}`}
+            style={{ transitionDelay: '0.3s' }}
+          >
             <span style={styles.emoji} className="emoji-bounce">🎮</span> My true passion lies in <span style={styles.highlight} className="highlight">game development</span>,{' '}
             where I bring a unique blend of technical skill and creative vision to life. I thrive on 
             mastering new tools and staying ahead of technology trends, whether working solo or 
             collaborating with teams across different industries.
           </p>
         </div>
+
+        {/* Demo content to enable scrolling */}
+        {/* <div className="h-screen bg-gradient-to-b from-gray-900 to-black rounded-lg mt-20 flex items-center justify-center">
+          <p className="text-2xl text-gray-400">Scroll up and down to see the fade effects!</p>
+        </div> */}
       </div>
     </>
   );

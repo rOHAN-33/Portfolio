@@ -130,6 +130,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import About from './pages/About'
 import ContactPage from './pages/ContactPage'
+import { SmoothCursor } from './components/ui/smooth-cursor'
 
 const App = () => {
   const [theme, setTheme] = useState("dark")
@@ -180,10 +181,14 @@ const App = () => {
 
   // Main app content
   return (
+
     <BrowserRouter>
-      <div className='App'>
+
+      <div className='App cursor-none'>
+<SmoothCursor></SmoothCursor>
         <ThemeProvider value={{ theme, darkTheme, lightTheme }}>
           <div className={`min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300`}>
+            
             <Navbar />
             <Routes>
               <Route path='/' element={<Home />} />

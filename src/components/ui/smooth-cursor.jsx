@@ -1,24 +1,9 @@
 "use client";
 
 import { motion, useSpring } from "motion/react";
-import { FC, JSX, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-interface Position {
-  x: number;
-  y: number;
-}
-
-export interface SmoothCursorProps {
-  cursor?: JSX.Element;
-  springConfig?: {
-    damping: number;
-    stiffness: number;
-    mass: number;
-    restDelta: number;
-  };
-}
-
-const DefaultCursorSVG: FC = () => {
+const DefaultCursorSVG = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -88,10 +73,10 @@ export function SmoothCursor({
     mass: 1,
     restDelta: 0.001,
   },
-}: SmoothCursorProps) {
-  const [isMoving, setIsMoving] = useState(false);
-  const lastMousePos = useRef<Position>({ x: 0, y: 0 });
-  const velocity = useRef<Position>({ x: 0, y: 0 });
+}) {
+  const [, setIsMoving] = useState(false);
+  const lastMousePos = useRef({ x: 0, y: 0 });
+  const velocity = useRef({ x: 0, y: 0 });
   const lastUpdateTime = useRef(Date.now());
   const previousAngle = useRef(0);
   const accumulatedRotation = useRef(0);
@@ -110,7 +95,7 @@ export function SmoothCursor({
   });
 
   useEffect(() => {
-    const updateVelocity = (currentPos: Position) => {
+    const updateVelocity = (currentPos) => {
       const currentTime = Date.now();
       const deltaTime = currentTime - lastUpdateTime.current;
 
@@ -125,12 +110,12 @@ export function SmoothCursor({
       lastMousePos.current = currentPos;
     };
 
-    const smoothMouseMove = (e: MouseEvent) => {
+    const smoothMouseMove = (e) => {
       const currentPos = { x: e.clientX, y: e.clientY };
       updateVelocity(currentPos);
 
       const speed = Math.sqrt(
-        Math.pow(velocity.current.x, 2) + Math.pow(velocity.current.y, 2),
+        Math.pow(velocity.current.x, 2) + Math.pow(velocity.current.y, 2)
       );
 
       cursorX.set(currentPos.x);
@@ -160,8 +145,8 @@ export function SmoothCursor({
       }
     };
 
-    let rafId: number;
-    const throttledMouseMove = (e: MouseEvent) => {
+    let rafId;
+    const throttledMouseMove = (e) => {
       if (rafId) return;
 
       rafId = requestAnimationFrame(() => {
