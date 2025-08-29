@@ -16,7 +16,9 @@ import Contact from './Contact'
 import Footer from './Footer'
 import Projects from './Projects'
 import LogoLoop from '../../reactbits/LogoLoop/LogoLoop'
-import ScrollStack from './ScrollStack'
+// import ScrollStack from './ScrollStack'
+import TechSkillsGrid from './SkillSet'
+import ParallexCard from '../lib/ParallexCard'
 // import Loader from '../ui/Loader'
 const Home = () => {
  
@@ -29,8 +31,10 @@ const Home = () => {
     <Slider></Slider>
     {/* <Projects></Projects> */}
     <Explain></Explain>
-    <ScrollStack></ScrollStack>
-    <Skills></Skills>
+    <ParallexCard></ParallexCard>
+    {/* <ScrollStack></ScrollStack> */}
+    <TechSkillsGrid></TechSkillsGrid>
+    {/* <Skills></Skills> */}
     <TestimonialsSection></TestimonialsSection>
      <Contact></Contact>
     {/* <Footer></Footer> */}
