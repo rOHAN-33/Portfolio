@@ -19,6 +19,8 @@ import LogoLoop from '../../reactbits/LogoLoop/LogoLoop'
 // import ScrollStack from './ScrollStack'
 import TechSkillsGrid from './SkillSet'
 import ParallexCard from '../lib/ParallexCard'
+import Eight from '../lib/Grid'
+import Grid from '../lib/Grid'
 // import Loader from '../ui/Loader'
 const Home = () => {
  
@@ -33,9 +35,11 @@ const Home = () => {
     <Explain></Explain>
     <ParallexCard></ParallexCard>
     {/* <ScrollStack></ScrollStack> */}
-    <TechSkillsGrid></TechSkillsGrid>
+    {/* <TechSkillsGrid></TechSkillsGrid> */}
     {/* <Skills></Skills> */}
-    <TestimonialsSection></TestimonialsSection>
+    {/* <TestimonialsSection></TestimonialsSection> */}
+    {/* <Eight></Eight> */}
+    <Grid></Grid>
      <Contact></Contact>
     {/* <Footer></Footer> */}
    

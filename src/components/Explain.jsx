@@ -264,7 +264,7 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-
+import {TextReveal } from "../components/magicui/text-reveal"
 const Explain = () => {
   const [isHovered, setIsHovered] = useState(false);
   const headerRef = useRef(null);
