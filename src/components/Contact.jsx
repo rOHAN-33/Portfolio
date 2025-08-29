@@ -4,7 +4,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import SlideArrowButton from './ui/SlideArrowButton';
 const HoverVideoBlock = ({ 
   videoSrc = "./scrolling.mp4",
   width = "400px",
@@ -67,12 +67,13 @@ const HoverVideoBlock = ({
         UPGRADE YOUR WEB PRESENCE
       </h1>
       <Link to="/contactPage">
-      <button
+      {/* <button
         className="bg-gray-800 text-white px-8 py-4 rounded-lg font-mono text-xl hover:bg-white hover:text-black transition-all duration-300"
-        onClick={() => console.log("Let's connect clicked!")}
+        
       >
-        LET'S CONNECT
-      </button>
+
+      </button> */}
+      <SlideArrowButton></SlideArrowButton>
       </Link>
       
     </div>

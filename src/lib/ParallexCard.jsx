@@ -31,7 +31,7 @@ export default function ParallexCard() {
       {/* Header */}
       <div className="w-12 h-12 bg-white  clip-polygon-logo ml-[480px] mt-[100px]"></div>
       <h1 
-        className="text-4xl md:text-8xl font-bold pt-[100px] text-left ml-[480px]"
+        className="text-4xl md:text-8xl font-bold pt-[100px] text-left "
         style={{ fontFamily: 'Antonio, sans-serif' }}
       >
         My Work

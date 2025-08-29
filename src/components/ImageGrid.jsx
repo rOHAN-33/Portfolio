@@ -185,6 +185,7 @@ const ImageGrid = () => {
 
   return (
     <div ref={containerRef} className='min-h-screen flex items-center justify-center overflow-y-hidden px-4 py-16 md:py-20 lg:mt-[-100px]'>
+      
       {/* Desktop Layout */}
       <div className="hidden lg:block">
         <div className="grid grid-cols-5 grid-rows-5 gap-4">
