@@ -168,3 +168,172 @@ export default function Page() {
   )
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client"
+
+// import { useState } from "react"
+// import GitHubCalendar from "react-github-calendar"
+// import { cn } from "../lib/utils"
+
+// const tiles = [
+//   { name: "React", slug: "react", bgHex: "#61DAFB", iconHex: "#000000", className: "md:col-span-3 md:row-span-2" },
+//   {
+//     name: "JavaScript",
+//     slug: "javascript",
+//     bgHex: "#F7DF1E",
+//     iconHex: "#000000",
+//     className: "md:col-span-6 md:row-span-2",
+//   },
+//   { name: "Express", slug: "express", bgHex: "#000000", iconHex: "#FFFFFF", className: "md:col-span-3 md:row-span-2" },
+
+//   // Row 3-4
+//   { name: "MongoDB", slug: "mongodb", bgHex: "#47A248", iconHex: "#FFFFFF", className: "md:col-span-5 md:row-span-2" },
+//   {
+//     name: "Next.js",
+//     slug: "nextdotjs",
+//     bgHex: "#000000",
+//     iconHex: "#FFFFFF",
+//     className: "md:col-span-7 md:row-span-2",
+//   },
+
+//   // Free space for GitHub calendar
+//   {
+//     name: "Free Space",
+//     slug: "spacer",
+//     bgHex: "transparent",
+//     iconHex: "#000000",
+//     className: "md:col-span-6 md:row-span-2 md:col-start-4 md:row-start-5",
+//   },
+//   {
+//     name: "Tailwind CSS",
+//     slug: "tailwindcss",
+//     bgHex: "#38B2AC",
+//     iconHex: "#FFFFFF",
+//     className: "md:col-span-3 md:row-span-2",
+//   },
+//   { name: "Git", slug: "git", bgHex: "#F05032", iconHex: "#FFFFFF", className: "md:col-span-3 md:row-span-2" },
+
+//   // Row 7-8
+//   { name: "Docker", slug: "docker", bgHex: "#2496ED", iconHex: "#FFFFFF", className: "md:col-span-6 md:row-span-2" },
+//   {
+//     name: "PostgreSQL",
+//     slug: "postgresql",
+//     bgHex: "#336791",
+//     iconHex: "#FFFFFF",
+//     className: "md:col-span-6 md:row-span-2",
+//   },
+// ]
+
+// function hoverAnimClass(name) {
+//   switch (name) {
+//     case "React":
+//       return "hover-react"
+//     case "Next.js":
+//       return "hover-next"
+//     case "JavaScript":
+//       return "hover-js"
+//     case "Tailwind CSS":
+//       return "hover-tailwind"
+//     case "Git":
+//       return "hover-git"
+//     case "Docker":
+//       return "hover-docker"
+//     case "MongoDB":
+//       return "hover-mongodb"
+//     case "PostgreSQL":
+//       return "hover-postgres"
+//     default:
+//       return ""
+//   }
+// }
+
+// function TileCard({ tile }) {
+//   const [hovered, setHovered] = useState(false)
+//   const isSpacer = tile.slug === "spacer"
+//   const iconUrl = `https://cdn.simpleicons.org/${tile.slug}/${tile.iconHex.replace("#", "")}`
+
+//   return (
+//     <div
+//       className={cn(
+//         "rounded-2xl p-4 md:p-6 flex items-center justify-center",
+//         isSpacer ? "border-2 border-dashed border-white/25 bg-slate-900/30" : "shadow-sm ring-1 ring-black/5",
+//         tile.className,
+//       )}
+//       style={isSpacer ? undefined : { backgroundColor: tile.bgHex }}
+//       aria-label={isSpacer ? "Free space" : tile.name}
+//       role={isSpacer ? "presentation" : "img"}
+//       onMouseEnter={() => setHovered(true)}
+//       onMouseLeave={() => setHovered(false)}
+//     >
+//       {!isSpacer ? (
+//         <>
+//           <img
+//             src={iconUrl || "/placeholder.svg"}
+//             alt={tile.name + " logo"}
+//             className={cn("h-16 w-16 md:h-20 md:w-20 will-change-transform", hovered ? hoverAnimClass(tile.name) : "")}
+//             crossOrigin="anonymous"
+//           />
+//           <span className="sr-only">{tile.name}</span>
+//         </>
+//       ) : (
+//         // Render GitHub Calendar inside Free Space
+//         <GitHubCalendar
+//           username="rOHAN-33" // change this!
+//           blockSize={10}
+//           // blockMargin={}
+//           color="#38B2AC"
+//           fontSize={14}
+//         />
+//       )}
+//     </div>
+//   )
+// }
+
+// export default function Page() {
+//   return (
+//     <main className="min-h-dvh bg-slate-950 text-white">
+//       <div className="bg-dots">
+//         <section className="mx-auto max-w-6xl px-4 py-8 md:py-12">
+//           <header className="mb-6 md:mb-8">
+//             <h1 className="text-pretty text-2xl font-semibold md:text-3xl">Tech stack</h1>
+//             <p className="text-sm text-slate-300">A bento-style layout showing tech icons + GitHub activity.</p>
+//           </header>
+
+//           <div className={cn("grid grid-cols-1 gap-4", "md:grid-cols-12 md:auto-rows-[110px]")}>
+//             {tiles.map((tile) => (
+//               <TileCard key={tile.name} tile={tile} />
+//             ))}
+//           </div>
+//         </section>
+//       </div>
+//     </main>
+//   )
+// }
