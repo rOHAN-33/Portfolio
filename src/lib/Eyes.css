@@ -1,0 +1,27 @@
+@keyframes leftright {
+  0%, 100% { transform: rotate(-35deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.loop-1 {
+    transform-origin: bottom;
+  animation: leftright 3s ease-in-out infinite;
+}
+
+
+
+
+
+
+@keyframes rightleft {
+  0%, 100% { transform: rotate(35deg); }
+  50% { transform: rotate(-10deg); }
+}
+.loop-2{
+    transform-origin: bottom;
+    animation: rightleft 3s ease-in-out infinite;
+}
+
+
+
+
